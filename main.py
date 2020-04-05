@@ -19,7 +19,6 @@ def main():
         for b in books:
             last_update_timestamp = b.get_last_update_timestamp()
             if db.get_last_update_timestamp(b.link) != last_update_timestamp:
-                print(db.get_last_update_timestamp(b.link), last_update_timestamp)
                 db.set_last_update_timestamp(b.link, last_update_timestamp)
                 sender.send_message(str(b))
 
