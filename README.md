@@ -1,1 +1,1 @@
-# Scraper for author.today 
+# Scraper for author.today

@@ -22,3 +22,7 @@ AT_PASSWORD = os.environ.get('AT_PASSWORD')
 AT_TELEGRAM_CHANNEL = os.environ.get('AT_TELEGRAM_CHANNEL')
 
 AT_TELEGRAM_BOT_TOKEN = os.environ.get('AT_TELEGRAM_BOT_TOKEN')
+
+AT_DATABASE = 'at.db'
+
+AT_TABLE_NAME = 'at_table'

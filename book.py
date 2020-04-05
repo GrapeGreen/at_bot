@@ -22,6 +22,7 @@ class Book:
         soup = BeautifulSoup(book_html, features = 'lxml')
         self.title, self.author = self.parse_title_and_author(soup.title.string)
         self.chapters = self.create_chapters(soup.find('ul', 'list-unstyled table-of-content').find_all('li'))
+        assert self.chapters
 
     @staticmethod
     def parse_title_and_author(title):
@@ -35,6 +36,9 @@ class Book:
         for chapter in chapters_list:
             chapters.append(BookChapter(chapter))
         return chapters
+
+    def get_last_update_timestamp(self):
+        return self.chapters[-1].date
 
     def __str__(self):
         return '{}\n{}\n{}'.format(self.author, self.title, str(self.chapters[-1]))

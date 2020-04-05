@@ -1,6 +1,8 @@
 import book
 import common
+import db
 import requests
+import sender
 
 
 def main():
@@ -14,7 +16,12 @@ def main():
             assert book_query.status_code == 200
             books.append(book.Book(book_url, book_query.text))
 
-        print('\n'.join(map(str, books)))
+        for b in books:
+            last_update_timestamp = b.get_last_update_timestamp()
+            if db.get_last_update_timestamp(b.link) != last_update_timestamp:
+                print(db.get_last_update_timestamp(b.link), last_update_timestamp)
+                db.set_last_update_timestamp(b.link, last_update_timestamp)
+                sender.send_message(str(b))
 
 
 if __name__ == "__main__":
